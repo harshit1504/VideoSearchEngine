@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Video Search Engine</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="../static/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="../static/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../static/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="../static/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../static/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="../static/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="../static/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../static/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../static/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="../static/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../static/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../static/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../static/favicon-16x16.png">
+<link rel="manifest" href="./manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../static/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../static/style.css" rel="stylesheet" type="text/css" media="all" />
+<meta name="theme-color" content="#ffffff">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../static/style.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+<div class="header">
+	<div class="wrap pos-relative">
+        <div class="logo">
+            <a href="{{ url_for('index') }}"><img src="../static/Tv-icon.png" height="40" width="40" alt="" /></a>
+        </div>
+        <div class="float-left">
+
+            <div class="search">
+                <form action="{{ url_for('search') }}" method="post">
+                    <input type="text" size="30" name="search_query" title="search_query">
+                    <input type="submit" value=""/>
+                </form>
+            </div>
+        </div>
+        <div class="float-right">
+
+            <div class="clear"></div>
+            <div class="menu" >
+                <!-- Add menu items if needed -->
+            </div>
+        </div>
+		<div class="clear"></div>
+    </div>
+</div>
+<div class="clear"></div>
+<div class="wrap">
+    <div class="content">
+       <!-- <div class="vdo-log margin_bottom">
+            <div class="video-player"><img src="images/video-player.jpg" alt="video" /></div>
+            <div class="clear"></div>
+        </div>-->
+        <div class="vdo-log">
+            <div class="heading"><h2>Search <span>Results</span></h2></div>
+        {% if not data %}
+    <h1>Oops!!  No Results Found. Please check for spelling errors.</h1>
+        {% else %}
+            {% for result in data %}
+            <div class="vdo-list">
+                <div class="vdo-thumb">
+                    <a href="/{{ result[0] }}"><img src="{{ thumb[loop.index-1][0] }}" alt="{{ result[1] }}"></a>
+                </div>
+                <div class="vdo-info">
+                    <div class="vdo-title"><a href='/{{ result[0] }}'><h3>{{ result[1] }}</h3></a></div>
+                    <div class="vdo-desc">{{ thumb[loop.index-1][1] }}...</div>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <div class="clear"></div>
+
+        </div>
+    </div>
+
+        <div class="clear"></div>
+    </div>
+
+</body>
+</html>
